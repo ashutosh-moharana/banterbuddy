@@ -1,4 +1,4 @@
-# [BanterBuddy](https://your-username.github.io/your-repo-name/) 😄
+# [BanterBuddy](https://ashutosh-moharana.github.io/banterbuddy/) 😄
 
 **Say your name. Get the joke.**
 
