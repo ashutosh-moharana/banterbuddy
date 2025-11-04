@@ -1,12 +1,12 @@
-# Banter Buddy 🎭
+# [BanterBuddy](https://your-username.github.io/your-repo-name/) 😄
 
-**Personalized dad jokes, delivered with style**
+**Say your name. Get the joke.**
 
 ## What is Banter Buddy?
 
 Banter Buddy is a fun web app that creates personalized dad jokes using your name. Watch as each joke types out with smooth animations in a beautiful, modern interface.
 
-## Why Banter Buddy? 😄
+## Why Banter Buddy? 
 
 - **Personalized Fun** - Get dad jokes customized with your name
 - **Beautiful Animations** - Smooth typewriter effects and transitions  
