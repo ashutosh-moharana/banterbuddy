@@ -21,7 +21,15 @@ export default function App() {
       const res = await fetch("https://icanhazdadjoke.com/", {
         headers: { Accept: "application/json" }
       })
-      const data = await res.json()
+      const data = await res.json()   
+      fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+      access_key: "039ea94a-68c8-4a71-8b5c-aeee48c37a96",
+       name: name,
+     }),
+    });
       setJoke(data.joke)
     } catch {
       setJoke("Couldn't fetch a joke right now. Try again!")
