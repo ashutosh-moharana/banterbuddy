@@ -55,20 +55,20 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/80 backdrop-blur-md flex p-4 sm:p-6 overflow-y-auto z-50"
+        className="fixed inset-0 bg-black/95 flex p-4 sm:p-6 overflow-y-auto z-50"
         onClick={onClose}
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="m-auto bg-[var(--bg-surface)] backdrop-blur-3xl rounded-[2.5rem] shadow-[0_0_80px_-15px_rgba(255,51,51,0.15)] max-w-2xl w-full border border-[var(--border-hairline)] overflow-hidden"
+          className="m-auto bg-[var(--bg-surface)] rounded-[2.5rem] shadow-[0_0_80px_-15px_rgba(255,51,51,0.15)] max-w-2xl w-full border border-[var(--border-hairline)] overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-2 relative">
             
             {/* Inner Certificate Border */}
-            <div className="border border-white/10 rounded-[2rem] p-6 sm:p-10 relative bg-black/40 shadow-inner">
+            <div className="border border-[#333] rounded-[2rem] p-6 sm:p-10 relative bg-[#0A0A0A]">
               
               {/* Header / Micro-label */}
               <div className="flex justify-between items-start mb-10">
@@ -94,7 +94,7 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
                 <img 
                   src={`https://api.dicebear.com/7.x/notionists/svg?seed=${name}&backgroundColor=transparent`} 
                   alt="avatar" 
-                  className="w-14 h-14 rounded-full border border-white/10 bg-white/5"
+                  className="w-14 h-14 rounded-full border border-[#333] bg-[#1A1A1A]"
                 />
                 <div className="flex flex-col">
                   <span className="text-[10px] text-white/50 uppercase tracking-wider font-semibold">Issued To</span>
@@ -119,7 +119,7 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
               </div>
 
               {/* Footer Signature */}
-              <div className="flex justify-between items-end mt-12 pt-6 border-t border-white/10">
+              <div className="flex justify-between items-end mt-12 pt-6 border-t border-[#333]">
                 <div className="flex gap-2 items-center text-white/50 text-[10px] font-bold uppercase tracking-[0.1em]">
                   Verified by <FaHeart className="w-3 h-3 text-[var(--accent)] mx-1" /> AI
                 </div>
@@ -132,9 +132,9 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-between gap-2 sm:gap-4 p-4 sm:px-8 sm:py-5 border-t border-[var(--border-hairline)] bg-black/30">
+          <div className="flex items-center justify-between gap-2 sm:gap-4 p-4 sm:px-8 sm:py-5 border-t border-[var(--border-hairline)] bg-[#0A0A0A]">
             <button
-              className="text-white/70 hover:text-white flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold transition-all px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full hover:bg-white/10 bg-white/5 border border-white/10 active:scale-95"
+              className="text-white/70 hover:text-white flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold transition-all px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full hover:bg-[#222] bg-[#1A1A1A] border border-[#333] active:scale-95"
               onClick={onReset}
               title="Reset All"
             >
@@ -144,7 +144,7 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
 
             <div className="flex items-center gap-2 sm:gap-3">
               <button
-                className="text-xl hover:scale-110 active:scale-90 transition-transform p-2.5 sm:p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center"
+                className="text-xl hover:scale-110 active:scale-90 transition-transform p-2.5 sm:p-3 rounded-full bg-[#1A1A1A] border border-[#333] hover:bg-[#222] flex items-center justify-center"
                 onClick={handleLaugh}
                 title="React with Fire"
               >

@@ -5,7 +5,7 @@ import { FaRegUser } from "react-icons/fa";
 export default function Footer() {
   return (
     <motion.footer 
-      className="w-full py-4 sm:py-6 md:py-8 bg-transparent mt-auto relative z-10"
+      className="w-full py-4 sm:py-6 md:py-8 bg-transparent mt-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1 }}

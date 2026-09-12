@@ -57,7 +57,7 @@ const CustomSelect = ({ value, onChange }) => {
     <div className="relative" ref={dropdownRef}>
       <button 
         type="button"
-        className="w-full bg-white/5 border border-white/10 text-left px-6 py-4 rounded-full flex items-center justify-between text-sm text-white focus:outline-none focus:ring-1 focus:ring-[var(--accent)] shadow-inner transition-all hover:bg-white/10"
+        className="w-full bg-[#1A1A1A] border border-[#333] text-left px-6 py-4 rounded-full flex items-center justify-between text-sm text-white focus:outline-none focus:ring-1 focus:ring-[var(--accent)] transition-all hover:bg-[#222]"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="truncate block mr-4 opacity-90">
@@ -71,21 +71,21 @@ const CustomSelect = ({ value, onChange }) => {
       <AnimatePresence>
         {isOpen && (
            <motion.div 
-             initial={{ opacity: 0, y: -10 }} 
+             initial={{ opacity: 0, y: 10 }} 
              animate={{ opacity: 1, y: 0 }} 
-             exit={{ opacity: 0, y: -10 }}
-             transition={{ duration: 0.15 }}
-             className="absolute z-50 w-full mt-2 bg-[#1A1A1A]/90 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl max-h-72 overflow-y-auto"
+             exit={{ opacity: 0, y: 10 }}
+             transition={{ duration: 0.2 }}
+             className="fixed inset-x-2 bottom-4 sm:absolute sm:inset-auto sm:w-full sm:mt-2 z-[100] bg-[#1A1A1A] border border-[#333] rounded-3xl shadow-2xl max-h-[60vh] sm:max-h-72 overflow-y-auto"
            >
              {REASON_OPTIONS.map((opt, i) => (
                 opt.isGroup ? (
-                  <div key={`group-${i}`} className="px-5 py-3 mt-2 text-[10px] font-bold text-white/40 uppercase tracking-wider bg-transparent sticky top-0 z-10 backdrop-blur-md">
+                  <div key={`group-${i}`} className="px-5 py-3 mt-2 text-[10px] font-bold text-white/40 uppercase tracking-wider bg-[#1A1A1A] sticky top-0 z-10">
                     {opt.label}
                   </div>
                 ) : (
                   <div 
                     key={opt.value} 
-                    className={`px-5 py-3 text-sm cursor-pointer transition-colors hover:bg-white/10 ${value === opt.value ? 'text-[var(--accent)] bg-white/5 font-bold' : 'text-white/80'}`}
+                    className={`px-5 py-3 text-sm cursor-pointer transition-colors hover:bg-[#222] ${value === opt.value ? 'text-[var(--accent)] bg-[#222] font-bold' : 'text-white/80'}`}
                     onClick={() => { onChange(opt.value); setIsOpen(false); }}
                   >
                     {opt.label}
@@ -107,7 +107,7 @@ export default function Header({ name, setName, reason, setReason, customReason,
       className="w-full px-4 py-6 sm:py-8 md:py-16 max-w-5xl mx-auto flex flex-col md:flex-row gap-6 md:gap-16 items-center md:items-start justify-between"
     >
       <div className="flex-1 text-center md:text-left flex flex-col items-center md:items-start mt-0 md:mt-8">
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-playfair font-bold mb-3 sm:mb-4 flex items-center justify-center md:justify-start gap-3 tracking-tight text-white drop-shadow-lg">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-playfair font-bold mb-3 sm:mb-4 flex items-center justify-center md:justify-start gap-2 sm:gap-3 tracking-tight text-white drop-shadow-lg whitespace-nowrap">
           <IoSparklesOutline className="text-[var(--accent)] drop-shadow-[0_0_15px_var(--accent)]" />
           Banter Buddy
         </h1>
@@ -122,7 +122,7 @@ export default function Header({ name, setName, reason, setReason, customReason,
           <div>
             <label className="block text-[var(--text-muted)] text-[11px] uppercase tracking-[0.2em] font-semibold mb-3 ml-2">The Victim</label>
             <input
-              className="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-[var(--accent)] focus:bg-white/10 px-6 py-4 rounded-full text-base sm:text-sm font-medium transition-all shadow-inner"
+              className="w-full bg-[#1A1A1A] border border-[#333] text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-[var(--accent)] focus:bg-[#222] px-6 py-4 rounded-full text-base sm:text-sm font-medium transition-all"
               placeholder="Hey legend... your name?"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -146,7 +146,7 @@ export default function Header({ name, setName, reason, setReason, customReason,
                   className="overflow-hidden"
                 >
                   <input
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-[var(--accent)] focus:bg-white/10 px-6 py-4 rounded-full text-base sm:text-sm font-medium transition-all shadow-inner"
+                    className="w-full bg-[#1A1A1A] border border-[#333] text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-[var(--accent)] focus:bg-[#222] px-6 py-4 rounded-full text-base sm:text-sm font-medium transition-all"
                     placeholder="e.g. thinks he's a professional photographer"
                     value={customReason}
                     onChange={(e) => setCustomReason(e.target.value)}

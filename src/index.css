@@ -5,8 +5,8 @@
 
 :root {
   --bg-base: #030303;        /* Pitch black */
-  --bg-surface: rgba(20, 20, 20, 0.4); /* Glassmorphic base */
-  --border-hairline: rgba(255, 255, 255, 0.08);
+  --bg-surface: #1A1A1A; /* Solid dark base */
+  --border-hairline: #333333;
   --text-primary: #FFFFFF;
   --text-muted: #A1A1AA;
 
