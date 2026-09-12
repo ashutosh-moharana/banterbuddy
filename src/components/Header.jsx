@@ -4,39 +4,27 @@ import { IoSparklesOutline } from "react-icons/io5";
 import { useState, useRef, useEffect } from "react";
 
 const REASON_OPTIONS = [
+  { value: "custom", label: "Custom reason..." },
+
   { isGroup: true, label: "Social Quirks" },
   { value: "Chronically online (Reels addict)", label: "Reels dekh dekh ke mera dimaag ka dahi ban gaya" },
   { value: "Texts back after 3 business days", label: "Mera reply courier delivery jaisa aata hai" },
   { value: "Always cancelling plans", label: "Plan mai banata hu, cancel bhi khud hi karta hu" },
-  { value: "Talks too much", label: "Bolne ka mera data pack unlimited hai" },
-  { value: "Socially unavailable", label: "Group mein hota hu, present kabhi nahi hota" },
-  { value: "Bad at replying", label: "Seen karke bhi gayab ho jaata hu" },
 
   { isGroup: true, label: "Desi Tropes" },
   { value: "Addicted to chai", label: "Khoon kam hai, chai zyada hai mere badan mein" },
   { value: "Exam panic specialist", label: "10 min padhta hu, AIR 1 ki tayyari karta hu" },
   { value: "Obsessed with cricket", label: "Khud se zyada mujhe Kohli ki average yaad hai" },
-  { value: "Always hungry", label: "Sirf khaane ke naam pe function attend karta hu" },
-  { value: "Always asking for food", label: "Ghar aata hu, seedha kitchen mein ghusta hu" },
 
   { isGroup: true, label: "Personality" },
   { value: "Main character syndrome", label: "Khud ko movie ka hero samajhta hu, sab side characters" },
   { value: "Delusional overthinker", label: "Ek msg pe pura serial likh deta hu dimaag mein" },
   { value: "Too dramatic", label: "Chhoti baat pe Ekta Kapoor serial bana deta hu" },
-  { value: "Thinks they're funny", label: "Khud hi hasta hu apni jokes pe" },
-  { value: "Acts like they know everything", label: "Google se zyada mera confidence hai, accuracy kam" },
-  { value: "Makes everything a competition", label: "Ludo mein bhi career ban jaata hai mere liye" },
 
   { isGroup: true, label: "Lifestyle" },
   { value: "Corporate slave", label: "9 to 9 naukar hu, LinkedIn pe hustler" },
   { value: "Gym obsessed", label: "Do saal se gym kar raha hu, body abhi bhi first week jaisi" },
-  { value: "Always late", label: "Time ko suggestion samajhta hu, rule nahi" },
-  { value: "Sleeps too much", label: "Bhaloo bhi mere saamne early riser hai" },
   { value: "Always broke", label: "Mera bank balance dekh ke RBI bhi tension mein aa jaaye" },
-  { value: "Takes forever to get ready", label: "Mujhe ready hone mein NASA ka countdown bhi chhota lagta hai" },
-
-  { isGroup: true, label: "Other" },
-  { value: "custom", label: "Custom reason..." },
 ];
 
 const CustomSelect = ({ value, onChange }) => {
@@ -75,7 +63,7 @@ const CustomSelect = ({ value, onChange }) => {
              animate={{ opacity: 1, y: 0 }} 
              exit={{ opacity: 0, y: 10 }}
              transition={{ duration: 0.2 }}
-             className="fixed inset-x-2 bottom-4 sm:absolute sm:inset-auto sm:w-full sm:mt-2 z-[100] bg-[#1A1A1A] border border-[#333] rounded-3xl shadow-2xl max-h-[60vh] sm:max-h-72 overflow-y-auto"
+             className="absolute z-[100] w-full mt-2 bg-[#1A1A1A] border border-[#333] rounded-3xl shadow-2xl max-h-72 overflow-y-auto"
            >
              {REASON_OPTIONS.map((opt, i) => (
                 opt.isGroup ? (
