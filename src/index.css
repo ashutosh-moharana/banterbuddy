@@ -1,2 +1,60 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap');
+
+:root {
+  --bg-base: #030303;        /* Pitch black */
+  --bg-surface: rgba(20, 20, 20, 0.4); /* Glassmorphic base */
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --text-primary: #FFFFFF;
+  --text-muted: #A1A1AA;
+
+  --accent: #FF3333;         /* Neon crimson */
+  --accent-glow: rgba(255, 51, 51, 0.4);
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.4;
+  }
+  33% {
+    transform: scale(1.1) translate(2%, 2%);
+    opacity: 0.5;
+  }
+  66% {
+    transform: scale(0.9) translate(-2%, -2%);
+    opacity: 0.3;
+  }
+}
+
+.animate-breathe {
+  animation: breathe 15s ease-in-out infinite alternate;
+}
+
+/* Custom scrollbar for modern feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base); 
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2); 
+}

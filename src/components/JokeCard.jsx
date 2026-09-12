@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion"
-import { FaArrowRotateLeft,FaArrowRotateRight } from "react-icons/fa6";
+import { FaArrowRotateLeft, FaArrowRotateRight, FaFire } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
-import { IoSparklesOutline } from "react-icons/io5";
 import { IoCloseSharp } from "react-icons/io5";
 
 import { useState, useEffect, useRef } from "react"
+import confetti from "canvas-confetti"
 
 export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onReset }) {
   const [shownText, setShownText] = useState("")
@@ -14,9 +14,9 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
 
   useEffect(() => {
     if (joke && !loading) {
-      startTyping(`${name}, ${joke}`)
+      startTyping(joke)
     }
-  }, [joke, loading, name])
+  }, [joke, loading])
 
   useEffect(() => {
     return () => clearInterval(intervalRef.current)
@@ -40,12 +40,13 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
     }, 30)
   }
 
-  function handleNewJoke() {
-    onNewJoke()
-  }
-
-  function handleReset() {
-    onReset()
+  const handleLaugh = () => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#FF3333', '#FF6B33', '#FFFFFF']
+    })
   }
 
   return (
@@ -54,84 +55,108 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4"
+        className="fixed inset-0 bg-black/80 backdrop-blur-md flex p-4 sm:p-6 overflow-y-auto z-50"
         onClick={onClose}
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="bg-[#F5F1DC] rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] md:max-h-[80vh] overflow-auto"
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          className="m-auto bg-[var(--bg-surface)] backdrop-blur-3xl rounded-[2.5rem] shadow-[0_0_80px_-15px_rgba(255,51,51,0.15)] max-w-2xl w-full border border-[var(--border-hairline)] overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header */}
-          <div className="flex justify-between items-center p-4 sm:p-6 border-b border-[#0046FF]/20">
-            <div className="flex items-center gap-3">
-              <IoSparklesOutline className="size-4 text-[#FF8040]" />
-              <h3 className="text-base sm:text-lg font-semibold text-[#001BB7]">Banter Buddy</h3>
-            </div>
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-[#0046FF]/10 rounded-lg transition-colors"
-            >
-              <IoCloseSharp className="w-5 h-5 text-[#001BB7]" />
-            </button>
-          </div>
-
-          {/* Content */}
-          <div className="p-4 sm:p-6 md:p-8">
-            <div className="flex justify-between items-start mb-4 sm:mb-6">
-              <div className="badge bg-[#0046FF] text-[#F5F1DC] border-0 text-xs sm:text-sm">
-                For {name || 'Friend'}
-              </div>
-            </div>
+          <div className="p-2 relative">
             
-            <div className="min-h-[150px] sm:min-h-[200px] flex items-center justify-center">
-              <div className="text-[#001BB7] font-medium text-lg sm:text-xl md:text-2xl leading-relaxed text-center break-words px-2 sm:px-4">
-                {loading ? (
-                  <span className="opacity-70">Creating your banter...</span>
-                ) : (
-                  <>
-                    {shownText}
-                    {typing && <span className="ml-1 text-[#FF8040] animate-pulse">|</span>}
-                  </>
-                )}
-              </div>
-            </div>
-
-            <div className="flex justify-between items-center mt-8 pt-6 border-t border-[#0046FF]/20">
-              <div className="flex gap-2 items-center text-[#001BB7]/60 text-sm">
+            {/* Inner Certificate Border */}
+            <div className="border border-white/10 rounded-[2rem] p-6 sm:p-10 relative bg-black/40 shadow-inner">
+              
+              {/* Header / Micro-label */}
+              <div className="flex justify-between items-start mb-10">
+                <div className="flex flex-col gap-1">
+                  <div className="text-[10px] font-bold text-white/50 uppercase tracking-[0.2em]">
+                    Official Document
+                  </div>
+                  <div className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
+                    Roast Certificate
+                  </div>
+                </div>
                 
-                Made with <FaHeart  className="w-4 h-4 text-[#FF8040]" />  by<span className="font-bold inline-block">Ashutosh</span>
+                <button
+                  onClick={onClose}
+                  className="p-2 -mr-2 -mt-2 hover:bg-white/10 rounded-full transition-colors text-white/50"
+                >
+                  <IoCloseSharp className="w-5 h-5" />
+                </button>
               </div>
-              <div className="hidden md:block text-[#001BB7]/60 text-sm">banterbuddy.fun</div>
+
+              {/* Recipient Details */}
+              <div className="flex items-center gap-4 mb-8">
+                <img 
+                  src={`https://api.dicebear.com/7.x/notionists/svg?seed=${name}&backgroundColor=transparent`} 
+                  alt="avatar" 
+                  className="w-14 h-14 rounded-full border border-white/10 bg-white/5"
+                />
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-white/50 uppercase tracking-wider font-semibold">Issued To</span>
+                  <span className="text-white font-bold text-lg">{name || 'Friend'}</span>
+                </div>
+              </div>
+              
+              {/* The Actual Joke (Playfair Display) */}
+              <div className="min-h-[160px] flex items-center justify-center py-4">
+                <div className="text-white font-playfair text-3xl sm:text-4xl md:text-5xl leading-tight text-center break-words w-full drop-shadow-md">
+                  {loading ? (
+                    <span className="opacity-40 animate-pulse text-white/50 text-xl font-sans">
+                      Sharpening the words...
+                    </span>
+                  ) : (
+                    <>
+                      "{shownText}"
+                      {typing && <span className="ml-1 text-[var(--accent)] animate-pulse">|</span>}
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Footer Signature */}
+              <div className="flex justify-between items-end mt-12 pt-6 border-t border-white/10">
+                <div className="flex gap-2 items-center text-white/50 text-[10px] font-bold uppercase tracking-[0.1em]">
+                  Verified by <FaHeart className="w-3 h-3 text-[var(--accent)] mx-1" /> AI
+                </div>
+                <div className="text-[10px] text-white/30 font-mono tracking-widest">
+                  {new Date().toISOString().split('T')[0].replace(/-/g, '')}
+                </div>
+              </div>
+
             </div>
           </div>
 
           {/* Actions */}
-          <div className="flex justify-between gap-3 p-6 border-t border-[#0046FF]/20 bg-[#F5F1DC]/50">
-            <motion.button
-              className="btn btn-ghost text-[#001BB7] hover:bg-[#0046FF]/10 gap-2"
-              onClick={handleReset}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <div className="flex flex-wrap justify-between items-center gap-4 p-6 sm:px-8 sm:py-6 border-t border-[var(--border-hairline)] bg-black/20">
+            <button
+              className="text-white/60 hover:text-white flex items-center gap-2 text-sm font-semibold transition-colors px-4 py-3 rounded-full hover:bg-white/10"
+              onClick={onReset}
             >
               <FaArrowRotateLeft className="w-4 h-4" />
-              Reset All
-            </motion.button>
+              <span className="hidden sm:inline">Reset</span>
+            </button>
+
+            <button
+              className="text-2xl hover:scale-110 active:scale-95 transition-transform p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center"
+              onClick={handleLaugh}
+              title="React"
+            >
+              <FaFire className="w-6 h-6 text-[#FF6B33]" />
+            </button>
             
-            <div className="flex gap-3">
-              <motion.button
-                className="btn bg-[#FF8040] text-[#F5F1DC] hover:bg-[#FF8040]/90 gap-2"
-                onClick={handleNewJoke}
-                disabled={loading}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaArrowRotateRight className="w-4 h-4" />
-                {loading ? "Loading..." : "New Joke"}
-              </motion.button>
-            </div>
+            <button
+              className="bg-[var(--accent)] text-white hover:bg-[#ff4d4d] flex items-center gap-2 text-sm font-bold uppercase tracking-wider px-6 py-4 rounded-full transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_var(--accent-glow)] hover:shadow-[0_0_30px_var(--accent-glow)]"
+              onClick={onNewJoke}
+              disabled={loading}
+            >
+              <FaArrowRotateRight className="w-4 h-4" />
+              {loading ? "Wait..." : "Roast Again"}
+            </button>
           </div>
         </motion.div>
       </motion.div>
