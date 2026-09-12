@@ -126,7 +126,7 @@ Now roast ${currentName} using the reason above. Return ONLY the roast, nothing 
   }
 
   return (
-    <div className="min-h-screen flex flex-col transition-colors duration-500 relative">
+    <div className="min-h-[100dvh] flex flex-col transition-colors duration-500 relative">
       
       {/* Immersive Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -135,7 +135,7 @@ Now roast ${currentName} using the reason above. Return ONLY the roast, nothing 
         <div className="absolute -bottom-[20%] left-[10%] w-[50vw] h-[50vw] md:w-[30vw] md:h-[30vw] rounded-full bg-[#990000] opacity-[0.2] blur-[100px] md:blur-[120px] mix-blend-screen animate-breathe" style={{ animationDelay: '10s' }} />
       </div>
 
-      <main className="flex-1 flex flex-col items-center justify-center w-full relative z-10">
+      <main className="flex-1 flex flex-col items-center justify-start sm:justify-center w-full relative z-10 py-4 sm:py-0">
         <Header 
           name={name} 
           setName={setName}

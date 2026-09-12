@@ -104,10 +104,10 @@ export default function Header({ name, setName, reason, setReason, customReason,
     <motion.header 
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full px-4 py-8 md:py-16 max-w-5xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16 items-center md:items-start justify-between"
+      className="w-full px-4 py-6 sm:py-8 md:py-16 max-w-5xl mx-auto flex flex-col md:flex-row gap-6 md:gap-16 items-center md:items-start justify-between"
     >
       <div className="flex-1 text-center md:text-left flex flex-col items-center md:items-start mt-0 md:mt-8">
-        <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-4 flex items-center justify-center md:justify-start gap-3 tracking-tight text-white drop-shadow-lg">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-playfair font-bold mb-3 sm:mb-4 flex items-center justify-center md:justify-start gap-3 tracking-tight text-white drop-shadow-lg">
           <IoSparklesOutline className="text-[var(--accent)] drop-shadow-[0_0_15px_var(--accent)]" />
           Banter Buddy
         </h1>
@@ -122,11 +122,14 @@ export default function Header({ name, setName, reason, setReason, customReason,
           <div>
             <label className="block text-[var(--text-muted)] text-[11px] uppercase tracking-[0.2em] font-semibold mb-3 ml-2">The Victim</label>
             <input
-              className="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-[var(--accent)] focus:bg-white/10 px-6 py-4 rounded-full text-sm font-medium transition-all shadow-inner"
+              className="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-[var(--accent)] focus:bg-white/10 px-6 py-4 rounded-full text-base sm:text-sm font-medium transition-all shadow-inner"
               placeholder="Hey legend... your name?"
               value={name}
               onChange={(e) => setName(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && onGenerate()}
+              onFocus={(e) => {
+                setTimeout(() => e.target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+              }}
             />
           </div>
           
@@ -143,12 +146,15 @@ export default function Header({ name, setName, reason, setReason, customReason,
                   className="overflow-hidden"
                 >
                   <input
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-[var(--accent)] focus:bg-white/10 px-6 py-4 rounded-full text-sm font-medium transition-all shadow-inner"
+                    className="w-full bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-[var(--accent)] focus:bg-white/10 px-6 py-4 rounded-full text-base sm:text-sm font-medium transition-all shadow-inner"
                     placeholder="e.g. thinks he's a professional photographer"
                     value={customReason}
                     onChange={(e) => setCustomReason(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && onGenerate()}
                     maxLength={120}
+                    onFocus={(e) => {
+                      setTimeout(() => e.target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+                    }}
                   />
                 </motion.div>
               )}

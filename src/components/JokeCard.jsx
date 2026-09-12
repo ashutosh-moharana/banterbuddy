@@ -103,8 +103,8 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
               </div>
               
               {/* The Actual Joke (Playfair Display) */}
-              <div className="min-h-[160px] flex items-center justify-center py-4">
-                <div className="text-white font-playfair text-3xl sm:text-4xl md:text-5xl leading-tight text-center break-words w-full drop-shadow-md">
+              <div className="min-h-[120px] sm:min-h-[160px] flex items-center justify-center py-2 sm:py-4">
+                <div className="text-white font-playfair text-xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-tight text-center break-words w-full drop-shadow-md px-1 sm:px-4">
                   {loading ? (
                     <span className="opacity-40 animate-pulse text-white/50 text-xl font-sans">
                       Sharpening the words...
@@ -132,31 +132,34 @@ export default function JokeCard({ name, joke, loading, onNewJoke, onClose, onRe
           </div>
 
           {/* Actions */}
-          <div className="flex flex-wrap justify-between items-center gap-4 p-6 sm:px-8 sm:py-6 border-t border-[var(--border-hairline)] bg-black/20">
+          <div className="flex items-center justify-between gap-2 sm:gap-4 p-4 sm:px-8 sm:py-5 border-t border-[var(--border-hairline)] bg-black/30">
             <button
-              className="text-white/60 hover:text-white flex items-center gap-2 text-sm font-semibold transition-colors px-4 py-3 rounded-full hover:bg-white/10"
+              className="text-white/70 hover:text-white flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold transition-all px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full hover:bg-white/10 bg-white/5 border border-white/10 active:scale-95"
               onClick={onReset}
+              title="Reset All"
             >
-              <FaArrowRotateLeft className="w-4 h-4" />
-              <span className="hidden sm:inline">Reset</span>
+              <FaArrowRotateLeft className="w-3.5 h-3.5" />
+              <span>Reset</span>
             </button>
 
-            <button
-              className="text-2xl hover:scale-110 active:scale-95 transition-transform p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center"
-              onClick={handleLaugh}
-              title="React"
-            >
-              <FaFire className="w-6 h-6 text-[#FF6B33]" />
-            </button>
-            
-            <button
-              className="bg-[var(--accent)] text-white hover:bg-[#ff4d4d] flex items-center gap-2 text-sm font-bold uppercase tracking-wider px-6 py-4 rounded-full transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_var(--accent-glow)] hover:shadow-[0_0_30px_var(--accent-glow)]"
-              onClick={onNewJoke}
-              disabled={loading}
-            >
-              <FaArrowRotateRight className="w-4 h-4" />
-              {loading ? "Wait..." : "Roast Again"}
-            </button>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <button
+                className="text-xl hover:scale-110 active:scale-90 transition-transform p-2.5 sm:p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center"
+                onClick={handleLaugh}
+                title="React with Fire"
+              >
+                <FaFire className="w-5 h-5 sm:w-6 sm:h-6 text-[#FF6B33]" />
+              </button>
+              
+              <button
+                className="bg-[var(--accent)] text-white hover:bg-[#ff4d4d] flex items-center justify-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-full transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_var(--accent-glow)] hover:shadow-[0_0_30px_var(--accent-glow)] whitespace-nowrap"
+                onClick={onNewJoke}
+                disabled={loading}
+              >
+                <FaArrowRotateRight className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${loading ? 'animate-spin' : ''}`} />
+                <span>{loading ? "Wait..." : "Roast Again"}</span>
+              </button>
+            </div>
           </div>
         </motion.div>
       </motion.div>
